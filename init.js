@@ -63,6 +63,4 @@ if (DEV_MODE) {
   loadSprite("mushroom", "./images/icecream.png");
   loadSprite("pipe", "./images/pipe.png");
   loadSprite("boss", "./images/boss.png");
-
-  loadSound("ambient", "./audios/gameAmbient.ogg");
 }

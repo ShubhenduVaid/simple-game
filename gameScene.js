@@ -341,10 +341,9 @@ scene("game", ({ level, score }) => {
   function playSound() {
     if (!SOUND_STARTED) {
       SOUND_STARTED = true;
-      // var sound = document.getElementById("initAudio");
-      // sound.play();
-      // sound.loop = true;
-      ambient.play();
+      var sound = document.getElementById("initAudio");
+      sound.play();
+      sound.loop = true;
     }
   }
 });

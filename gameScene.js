@@ -105,9 +105,6 @@ scene("game", ({ level, score }) => {
   };
 
   const gameLevel = addLevel(maps[level], levelCfg);
-  //Sound
-  play("gameSound");
-  ///////////////
 
   add([layer("ui"), rect(90, 38), pos(0, 0)]);
   for (let index = 0; index < 15; index++) {
@@ -135,6 +132,12 @@ scene("game", ({ level, score }) => {
       origin("bot"),
     ]);
   }
+
+  setTimeout(() => {
+    //Sound
+    play("gameSound");
+    ///////////////
+  }, 1000);
 
   const scoreLabel = add([
     text("Score : " + score),

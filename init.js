@@ -18,7 +18,7 @@ const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
 const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
 let isJumping = true;
 let CURRENT_JUMP_FORCE = JUMP_FORCE;
-const DEV_MODE = true;
+const DEV_MODE = false;
 if (DEV_MODE) {
   loadSprite("coin", "https://i.imgur.com/wbKxhcd.png");
   loadSprite("evil-shroom", "https://i.imgur.com/63EYaI7.png");

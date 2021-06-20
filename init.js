@@ -61,5 +61,5 @@ if (DEV_MODE) {
   loadSprite("pipe", "./images/pipe.png");
   loadSprite("boss", "./images/boss.png");
 
-  loadSound("game-ambient", "./audios/startup.ogg");
+  loadSound("gameAmbient", "./audios/startup.ogg");
 }

@@ -57,7 +57,7 @@ if (DEV_MODE) {
   loadSprite("evil-shroom", "./images/monsterOne.png");
   loadSprite("another-evil-shroom", "./images/monsterThree.png");
   loadSprite("mario", "./images/yashi.png");
-  loadSprite("mushroom", "./images/shivi.png");
+  loadSprite("mushroom", "./images/icecream.png");
   loadSprite("pipe", "./images/pipe.png");
   loadSprite("boss", "./images/boss.png");
 }

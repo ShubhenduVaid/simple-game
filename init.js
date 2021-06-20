@@ -16,9 +16,12 @@ const BOSS_JUMP_TIME = 1;
 const GAME_MODE = 1; // 0 EASY 1 HARD
 const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
 const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
+const DEV_MODE = true;
+
 let isJumping = true;
 let CURRENT_JUMP_FORCE = JUMP_FORCE;
-const DEV_MODE = true;
+let SOUND_STARTED = false;
+
 if (DEV_MODE) {
   loadSprite("coin", "https://i.imgur.com/wbKxhcd.png");
   loadSprite("evil-shroom", "https://i.imgur.com/63EYaI7.png");
@@ -40,8 +43,6 @@ if (DEV_MODE) {
   loadSprite("blue-surprise", "https://i.imgur.com/RMqCc1G.png");
   loadSprite("boss", "https://i.imgur.com/DappYKF.png");
 } else {
-  loadSound("gameSound", "./audios/gameSound.mp3");
-
   loadSprite("coin", "https://i.imgur.com/wbKxhcd.png");
   loadSprite("brick", "https://i.imgur.com/pogC9x5.png");
   loadSprite("block", "https://i.imgur.com/M6rwarW.png");

@@ -18,7 +18,7 @@ const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
 const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
 let isJumping = true;
 let CURRENT_JUMP_FORCE = JUMP_FORCE;
-const DEV_MODE = false;
+const DEV_MODE = true;
 if (DEV_MODE) {
   loadSprite("coin", "https://i.imgur.com/wbKxhcd.png");
   loadSprite("evil-shroom", "https://i.imgur.com/63EYaI7.png");
@@ -60,4 +60,6 @@ if (DEV_MODE) {
   loadSprite("mushroom", "./images/icecream.png");
   loadSprite("pipe", "./images/pipe.png");
   loadSprite("boss", "./images/boss.png");
+
+  loadSound("game-ambient", "startup.ogg");
 }

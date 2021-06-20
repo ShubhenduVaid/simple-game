@@ -312,12 +312,12 @@ scene("game", ({ level, score }) => {
   });
 
   keyDown("left", () => {
-    //playSound();
+    playSound();
     player.move(-MOVE_SPEED, 0);
   });
 
   keyDown("right", () => {
-    //playSound();
+    playSound();
     player.move(MOVE_SPEED, 0);
   });
 
@@ -328,7 +328,7 @@ scene("game", ({ level, score }) => {
   });
 
   keyPress("space", () => {
-    //playSound();
+    playSound();
     if (player.grounded()) {
       isJumping = true;
       player.jump(CURRENT_JUMP_FORCE);
@@ -336,16 +336,17 @@ scene("game", ({ level, score }) => {
   });
 
   // SOUND
-  play("ambient");
-});
+  const ambient = play("ambient");
 
-function playSound() {
-  if (!SOUND_STARTED) {
-    SOUND_STARTED = true;
-    var sound = document.getElementById("initAudio");
-    sound.play();
-    sound.loop = true;
+  function playSound() {
+    if (!SOUND_STARTED) {
+      SOUND_STARTED = true;
+      // var sound = document.getElementById("initAudio");
+      // sound.play();
+      // sound.loop = true;
+      ambient.play();
+    }
   }
-}
+});
 
 start("game", { level: 0, score: 0 });

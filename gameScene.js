@@ -312,12 +312,12 @@ scene("game", ({ level, score }) => {
   });
 
   keyDown("left", () => {
-    playSound();
+    //playSound();
     player.move(-MOVE_SPEED, 0);
   });
 
   keyDown("right", () => {
-    playSound();
+    //playSound();
     player.move(MOVE_SPEED, 0);
   });
 
@@ -328,12 +328,15 @@ scene("game", ({ level, score }) => {
   });
 
   keyPress("space", () => {
-    playSound();
+    //playSound();
     if (player.grounded()) {
       isJumping = true;
       player.jump(CURRENT_JUMP_FORCE);
     }
   });
+
+  // SOUND
+  play("ambient");
 });
 
 function playSound() {

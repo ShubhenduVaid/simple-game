@@ -16,7 +16,7 @@ const BOSS_JUMP_TIME = 1;
 const GAME_MODE = 1; // 0 EASY 1 HARD
 const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
 const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
-const DEV_MODE = true;
+const DEV_MODE = false;
 
 let isJumping = true;
 let CURRENT_JUMP_FORCE = JUMP_FORCE;
@@ -63,4 +63,6 @@ if (DEV_MODE) {
   loadSprite("mushroom", "./images/icecream.png");
   loadSprite("pipe", "./images/pipe.png");
   loadSprite("boss", "./images/boss.png");
+
+  loadSound("ambient", "./audios/gameAmbient.ogg");
 }

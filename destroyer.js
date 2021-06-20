@@ -12,5 +12,11 @@ const destroyAllAssets = () => {
   destroyAll("blueBlock");
   destroyAll("coin-surprise");
   destroyAll("blue-steel");
+  destroyAll("cloudsOne");
+  destroyAll("cloudsTwo");
+  destroyAll("cloudsThree");
+  destroyAll("boss");
+  CURRENT_JUMP_FORCE = JUMP_FORCE;
+  isJumping = true;
 };
 window.destroyAllAssets = destroyAllAssets;

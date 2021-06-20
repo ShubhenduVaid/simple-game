@@ -3,15 +3,19 @@ kaboom({
   fullscreen: true,
   scale: 2,
   crisp: true,
-  debug: false,
+  debug: true,
   clearColor: [0, 0.4, 0.6, 0.6],
 });
 
-const MOVE_SPEED = 150;
-const JUMP_FORCE = 400;
-const BIG_JUMP_FORCE = 550;
+const BIG_JUMP_FORCE = 700;
 const FALL_DEATH = 400;
 const ENEMY_SPEED = 30;
+const ENEMY_JUMP_FORCE = 200;
+const BOSS_JUMP_FORCE = 600;
+const BOSS_JUMP_TIME = 1;
+const GAME_MODE = 1; // 0 EASY 1 HARD
+const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
+const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
 let isJumping = true;
 let CURRENT_JUMP_FORCE = JUMP_FORCE;
 
@@ -28,5 +32,9 @@ loadSprite("pipe", "https://i.imgur.com/Dnjhs96.png");
 loadSprite("blue-block", "https://i.imgur.com/fVscIbn.png");
 loadSprite("blue-brick", "https://i.imgur.com/3e5YRQd.png");
 loadSprite("blue-steel", "https://i.imgur.com/gqVoI2b.png");
+loadSprite("cloudsOne", "https://i.imgur.com/Ad4qM4E.png");
+loadSprite("cloudsTwo", "https://i.imgur.com/gPoY6Pg.png");
+loadSprite("cloudsThree", "https://i.imgur.com/X1s30iP.png");
 loadSprite("blue-evil-shroom", "https://i.imgur.com/Swmkpfs.png");
 loadSprite("blue-surprise", "https://i.imgur.com/RMqCc1G.png");
+loadSprite("boss", "https://i.imgur.com/DappYKF.png");

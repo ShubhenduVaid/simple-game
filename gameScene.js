@@ -106,10 +106,7 @@ scene("game", ({ level, score }) => {
 
   const gameLevel = addLevel(maps[level], levelCfg);
   //Sound
-  play("gameAmbient", {
-    volume: 1,
-    speed: 1,
-  });
+  play("gameSound");
   ///////////////
 
   add([layer("ui"), rect(90, 38), pos(0, 0)]);

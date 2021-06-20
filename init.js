@@ -40,6 +40,8 @@ if (DEV_MODE) {
   loadSprite("blue-surprise", "https://i.imgur.com/RMqCc1G.png");
   loadSprite("boss", "https://i.imgur.com/DappYKF.png");
 } else {
+  loadSound("gameSound", "./audios/gameSound.mp3");
+
   loadSprite("coin", "https://i.imgur.com/wbKxhcd.png");
   loadSprite("brick", "https://i.imgur.com/pogC9x5.png");
   loadSprite("block", "https://i.imgur.com/M6rwarW.png");
@@ -60,6 +62,4 @@ if (DEV_MODE) {
   loadSprite("mushroom", "./images/icecream.png");
   loadSprite("pipe", "./images/pipe.png");
   loadSprite("boss", "./images/boss.png");
-
-  loadSound("gameSound", "./audios/gameSound.mp3");
 }

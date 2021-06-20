@@ -335,9 +335,6 @@ scene("game", ({ level, score }) => {
     }
   });
 
-  // SOUND
-  const ambient = play("ambient");
-
   function playSound() {
     if (!SOUND_STARTED) {
       SOUND_STARTED = true;

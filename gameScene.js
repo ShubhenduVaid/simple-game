@@ -1,39 +1,3 @@
-kaboom({
-  global: true,
-  fullscreen: true,
-  scale: 2,
-  debug: false,
-  clearColor: [0, 0.4, 0.6, 0.6],
-});
-
-const MOVE_SPEED = 150;
-const JUMP_FORCE = 400;
-const BIG_JUMP_FORCE = 550;
-let CURRENT_JUMP_FORCE = JUMP_FORCE;
-let isJumping = true;
-const FALL_DEATH = 400;
-const ENEMY_SPEED = 30;
-
-//loadRoot("https://i.imgur.com/");
-loadSprite("coin", "https://i.imgur.com/wbKxhcd.png");
-loadSprite("evil-shroom", "https://i.imgur.com/63EYaI7.png");
-loadSprite("another-evil-shroom", "https://i.imgur.com/cX2qpJN.png");
-loadSprite("brick", "https://i.imgur.com/pogC9x5.png");
-loadSprite("block", "https://i.imgur.com/M6rwarW.png");
-loadSprite("mario", "https://i.imgur.com/Cq01tRX.png");
-loadSprite("mushroom", "https://i.imgur.com/KQFb1ed.png");
-loadSprite("surprise", "https://i.imgur.com/gesQ1KP.png");
-loadSprite("unboxed", "https://i.imgur.com/bdrLpi6.png");
-loadSprite("pipe", "https://i.imgur.com/Dnjhs96.png");
-
-loadSprite("blue-block", "https://i.imgur.com/fVscIbn.png");
-loadSprite("blue-brick", "https://i.imgur.com/3e5YRQd.png");
-loadSprite("blue-steel", "https://i.imgur.com/gqVoI2b.png");
-loadSprite("blue-evil-shroom", "https://i.imgur.com/Swmkpfs.png");
-loadSprite("blue-surprise", "https://i.imgur.com/RMqCc1G.png");
-
-loadSprite("bg", "https://i.imgur.com/X24REw7.png");
-
 scene("game", ({ level, score }) => {
   layers(["bg", "obj", "ui"], "obj");
   camIgnore(["ui"]);
@@ -59,34 +23,34 @@ scene("game", ({ level, score }) => {
       "================  ==========  =====================  ===================  ========================================= ===========",
     ],
     [
-      "£                                                                                                                               £",
-      "£                                                                                                                               £",
-      "£                                                                                                                               £",
-      "£                                                                                                                               £",
-      "£                                                                                                                               £",
-      "£                                                                                                                               £",
-      "£                                                                                                                               £",
-      "£                                                                                                                               £",
-      "£           @ @                                  @@                                              @@@@@@              x x        £",
-      "£                             *                                                                                    x x x        £",
-      "£                                                                                                                x x x x  x     £",
-      "£                                   £                     z                    £                  ^     z   (  x x x x x  x ( ~ £",
-      "!!!!!!!!!!!!!!!!!!!!!!!!!  !!!!!!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+      "£                                                                                                                             £",
+      "£                                                                                                                             £",
+      "£                                                                                                                             £",
+      "£                                                                                                                             £",
+      "£                                                                                                                             £",
+      "£                                                                                                                             £",
+      "£                                                                                                                             £",
+      "£                                                                                                                             £",
+      "£           @ @                                  @@                                              @@@@@@              x x      £",
+      "£                             *                                                                                    x x x      £",
+      "£                                                                                                                x x x x  x   £",
+      "£                                   £                     z                    £                  ^     z   (x x x x x  x ( ~ £",
+      "!!!!!!!!!!!!!!!!!!!!!!!!!  !!!!!!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
     ],
     [
-      "£                                                                                                                               £",
-      "£                                                                                                                               £",
-      "£                                            @@@@@@                           @@@@                                              £",
-      "£                                                                                                                               £",
-      "£                                 ^                                                                                             £",
-      "£ ===================================================================   x  ===============                                      £",
-      "£                                                                      x                                                        £",
-      "£                                                                     x                                                ^        £",
-      "£           @ @                                  @@                  x                           @@@@@@              x x        £",
-      "£                             *                                     x                                              x x x        £",
-      "£                                                                  x                                             x x x x        £",
-      "£                                    £                      z      x                             ^     (   z  x x x x x x   ( ~  £",
-      "!!!!!!!!!!!!!!!!!!!!!!!!!  !!!!!!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+      "£                                                                                                                             £",
+      "£                                                                                                                             £",
+      "£                                            @@@@@@                           @@@@                                            £",
+      "£                                                                                                                             £",
+      "£                                 ^                                                                                           £",
+      "£ ===================================================================   x  ===============                                    £",
+      "£                                                                      x                                                      £",
+      "£                                                                     x                                                ^      £",
+      "£           @ @                                  @@                  x                           @@@@@@              x x      £",
+      "£                             *                                     x                                              x x x      £",
+      "£                                                                  x                                             x x x x      £",
+      "£                                    £                      z      x                             ^     (   z  x x x x x x ( ~ £",
+      "!!!!!!!!!!!!!!!!!!!!!!!!!  !!!!!!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
     ],
   ];
 
@@ -97,8 +61,8 @@ scene("game", ({ level, score }) => {
     $: [sprite("coin"), "coin"],
     "%": [sprite("surprise"), solid(), "coin-surprise"],
     "*": [sprite("surprise"), solid(), "mushroom-surprise"],
-    "}": [sprite("unboxed"), solid()],
-    "~": [sprite("pipe"), solid(), "pipe", scale(0.1), origin("bot"), body()],
+    "}": [sprite("unboxed"), solid(), "unboxed"],
+    "~": [sprite("pipe"), solid(), scale(0.1), origin("bot"), body(), "pipe"],
     "^": [
       sprite("evil-shroom"),
       solid(),
@@ -123,7 +87,7 @@ scene("game", ({ level, score }) => {
       scale(0.1),
       origin("bot"),
     ],
-    "!": [sprite("blue-block"), solid(), scale(0.5)],
+    "!": [sprite("blue-block"), solid(), scale(0.5), "blueBlock"],
     "£": [sprite("blue-brick"), solid(), scale(0.5), "bouncer"],
     z: [
       sprite("blue-evil-shroom"),
@@ -138,8 +102,6 @@ scene("game", ({ level, score }) => {
   };
 
   const gameLevel = addLevel(maps[level], levelCfg);
-
-  add([sprite("bg"), layer("bg"), origin("topleft"), scale(0.5, 0.2)]);
 
   const scoreBg = add([layer("ui"), rect(90, 38), pos(0, 0)]);
 
@@ -196,7 +158,7 @@ scene("game", ({ level, score }) => {
     sprite("mario"),
     scale(0.06),
     solid(),
-    pos(550, 200),
+    pos(50, 100),
     body(),
     big(),
     origin("bot"),
@@ -258,6 +220,7 @@ scene("game", ({ level, score }) => {
       player.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
       wait(0.5, () => {
         go("lose", { score: scoreLabel.value });
+        window.destroyAllAssets();
       });
     }
   });
@@ -271,6 +234,7 @@ scene("game", ({ level, score }) => {
       player.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
       wait(0.5, () => {
         go("lose", { score: scoreLabel.value });
+        window.destroyAllAssets();
       });
     }
   });
@@ -281,6 +245,7 @@ scene("game", ({ level, score }) => {
       camShake(30);
       wait(0.5, () => {
         go("lose", { score: scoreLabel.value });
+        window.destroyAllAssets();
       });
     }
   });
@@ -313,25 +278,6 @@ scene("game", ({ level, score }) => {
       isJumping = true;
       player.jump(CURRENT_JUMP_FORCE);
     }
-  });
-});
-
-scene("lose", ({ score }) => {
-  add([
-    text("Your score : " + score, 32),
-    origin("center"),
-    pos(width() / 2, height() / 2),
-  ]);
-  add([
-    text("Press space to restart", 20),
-    origin("center"),
-    pos(width() / 2, height() / 2 + 40),
-  ]);
-  keyPress("space", () => {
-    go("game", {
-      level: 0,
-      score: 0,
-    });
   });
 });
 

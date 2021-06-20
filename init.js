@@ -24,7 +24,7 @@ loadSprite("evil-shroom", "https://i.imgur.com/63EYaI7.png");
 loadSprite("another-evil-shroom", "https://i.imgur.com/cX2qpJN.png");
 loadSprite("brick", "https://i.imgur.com/pogC9x5.png");
 loadSprite("block", "https://i.imgur.com/M6rwarW.png");
-loadSprite("mario", "https://i.imgur.com/Cq01tRX.png");
+loadSprite("mario", "./images/yashi.jpg"); //https://i.imgur.com/Cq01tRX.png
 loadSprite("mushroom", "https://i.imgur.com/KQFb1ed.png");
 loadSprite("surprise", "https://i.imgur.com/gesQ1KP.png");
 loadSprite("unboxed", "https://i.imgur.com/bdrLpi6.png");

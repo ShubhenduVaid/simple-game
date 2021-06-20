@@ -137,7 +137,7 @@ scene("game", ({ level, score }) => {
     //Sound
     play("gameSound");
     ///////////////
-  }, 1000);
+  }, 5000);
 
   const scoreLabel = add([
     text("Score : " + score),

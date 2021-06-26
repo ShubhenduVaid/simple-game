@@ -14,10 +14,12 @@ const ENEMY_SPEED = 30;
 const ENEMY_JUMP_FORCE = 200;
 const BOSS_JUMP_FORCE = 600;
 const BOSS_JUMP_TIME = 1;
+const KAMINA_BOSS_JUMP_FORCE = 400;
+const KAMINA_BOSS_JUMP_TIME = 3;
 const GAME_MODE = 1; // 0 EASY 1 HARD
 const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
 const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
-const DEV_MODE = true;
+const DEV_MODE = false;
 
 let isJumping = true;
 let CURRENT_JUMP_FORCE = JUMP_FORCE;
@@ -34,6 +36,7 @@ if (DEV_MODE) {
   loadSprite("priyank", "https://i.imgur.com/Wnva3pR.png");
   loadSprite("chinu", "https://i.imgur.com/sdCOrSL.png");
   loadSprite("babu", "https://i.imgur.com/Uxchk4M.png");
+  loadSprite("kamina", "https://i.imgur.com/HgLm8A3.png");
   loadSprite("mushroom", "https://i.imgur.com/WVyDZ9V.png");
   loadSprite("surprise", "https://i.imgur.com/gesQ1KP.png");
   loadSprite("unboxed", "https://i.imgur.com/bdrLpi6.png");
@@ -69,6 +72,7 @@ if (DEV_MODE) {
   loadSprite("chinu", "./images/chinu.png");
   loadSprite("babu", "./images/babu.png");
   loadSprite("priyank", "./images/priyank.png");
+  loadSprite("kamina", "./images/kamina.png");
   loadSprite("mushroom", "./images/icecream.png");
   loadSprite("pipe", "./images/pipe.png");
   loadSprite("boss", "./images/boss.png");

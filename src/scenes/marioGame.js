@@ -22,6 +22,14 @@ scene("marioGame", ({ level, score, champion }) => {
       origin("bot"),
       body(),
     ],
+    k: [
+      sprite("kamina"),
+      solid(),
+      "kamina",
+      scale(0.25),
+      origin("bot"),
+      body(),
+    ],
     "(": [
       sprite("another-evil-shroom"),
       solid(),
@@ -181,9 +189,39 @@ scene("marioGame", ({ level, score, champion }) => {
   loop(BOSS_JUMP_TIME, () => {
     action("boss", (d) => {
       if (d.grounded()) {
+        camShake(5);
         d.jump(BOSS_JUMP_FORCE);
       }
     });
+  });
+
+  loop(KAMINA_BOSS_JUMP_TIME, () => {
+    action("kamina", (k) => {
+      if (k.grounded()) {
+        k.jump(KAMINA_BOSS_JUMP_FORCE);
+        camShake(0.11);
+      }
+    });
+  });
+
+  player.collides("kamina", (k) => {
+    if (isJumping) {
+      camShake(5);
+      k.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
+      k.scale = 0.09;
+      wait(0.5, () => {
+        destroy(k);
+        scoreLabel.value += 10;
+        scoreLabel.text = "Score : " + scoreLabel.value;
+      });
+    } else {
+      camShake(30);
+      player.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
+      wait(0.1, () => {
+        go("playerLost", { score: scoreLabel.value, champion });
+        window.destroyAllAssets();
+      });
+    }
   });
 
   player.collides("boss", (d) => {

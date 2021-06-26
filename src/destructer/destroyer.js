@@ -16,6 +16,7 @@ const destroyAllAssets = () => {
   destroyAll("cloudsTwo");
   destroyAll("cloudsThree");
   destroyAll("boss");
+  destroyAll("kamina");
   CURRENT_JUMP_FORCE = JUMP_FORCE;
   isJumping = true;
 };

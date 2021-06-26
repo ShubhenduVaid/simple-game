@@ -2,9 +2,10 @@ kaboom({
   global: true,
   fullscreen: true,
   scale: 2,
-  crisp: true,
-  debug: true,
+  crisp: false,
+  debug: false,
   clearColor: [0, 0.4, 0.6, 0.6],
+  canvas: document.getElementById("game"),
 });
 
 const BIG_JUMP_FORCE = 700;

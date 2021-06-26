@@ -1,4 +1,4 @@
-scene("game", ({ level, score }) => {
+scene("marioGame", ({ level, score, champion }) => {
   layers(["clouds", "obj", "ui"], "obj");
   camIgnore(["ui"]);
   camScale(1.1);
@@ -132,7 +132,7 @@ scene("game", ({ level, score }) => {
   }
 
   const player = add([
-    sprite("mario"),
+    sprite(champion),
     scale(0.07),
     solid(),
     pos(40, 100),
@@ -190,7 +190,7 @@ scene("game", ({ level, score }) => {
     camShake(30);
     player.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
     wait(0.5, () => {
-      go("lose", { score: scoreLabel.value });
+      go("playerLost", { score: scoreLabel.value, champion });
       window.destroyAllAssets();
     });
   });
@@ -216,7 +216,7 @@ scene("game", ({ level, score }) => {
       camShake(30);
       player.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
       wait(0.1, () => {
-        go("lose", { score: scoreLabel.value });
+        go("playerLost", { score: scoreLabel.value, champion });
         window.destroyAllAssets();
       });
     }
@@ -233,7 +233,7 @@ scene("game", ({ level, score }) => {
       camShake(30);
       player.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
       wait(0.5, () => {
-        go("lose", { score: scoreLabel.value });
+        go("playerLost", { score: scoreLabel.value, champion });
         window.destroyAllAssets();
       });
     }
@@ -244,7 +244,7 @@ scene("game", ({ level, score }) => {
     if (player.pos.y >= FALL_DEATH) {
       camShake(30);
       wait(0.5, () => {
-        go("lose", { score: scoreLabel.value });
+        go("playerLost", { score: scoreLabel.value, champion });
         window.destroyAllAssets();
       });
     }
@@ -253,9 +253,10 @@ scene("game", ({ level, score }) => {
   player.collides("pipe", () => {
     keyPress("down", () => {
       player.move(0, 100);
-      go("game", {
+      go("marioGame", {
         level: (level + 1) % maps.length,
         score: scoreLabel.value,
+        champion,
       });
     });
   });
@@ -293,5 +294,3 @@ scene("game", ({ level, score }) => {
     }
   }
 });
-
-// start("game", { level: 0, score: 0 });

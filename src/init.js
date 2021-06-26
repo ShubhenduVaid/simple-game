@@ -17,7 +17,7 @@ const BOSS_JUMP_TIME = 1;
 const GAME_MODE = 1; // 0 EASY 1 HARD
 const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
 const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
-const DEV_MODE = false;
+const DEV_MODE = true;
 
 let isJumping = true;
 let CURRENT_JUMP_FORCE = JUMP_FORCE;
@@ -29,8 +29,12 @@ if (DEV_MODE) {
   loadSprite("another-evil-shroom", "https://i.imgur.com/cX2qpJN.png");
   loadSprite("brick", "https://i.imgur.com/pogC9x5.png");
   loadSprite("block", "https://i.imgur.com/M6rwarW.png");
-  loadSprite("mario", "https://i.imgur.com/Cq01tRX.png");
-  loadSprite("mushroom", "https://i.imgur.com/KQFb1ed.png");
+  loadSprite("yashi", "https://i.imgur.com/Cq01tRX.png");
+  loadSprite("shivi", "https://i.imgur.com/IAyWUx6.png");
+  loadSprite("priyank", "https://i.imgur.com/Wnva3pR.png");
+  loadSprite("chinu", "https://i.imgur.com/sdCOrSL.png");
+  loadSprite("babu", "https://i.imgur.com/Uxchk4M.png");
+  loadSprite("mushroom", "https://i.imgur.com/WVyDZ9V.png");
   loadSprite("surprise", "https://i.imgur.com/gesQ1KP.png");
   loadSprite("unboxed", "https://i.imgur.com/bdrLpi6.png");
   loadSprite("pipe", "https://i.imgur.com/Dnjhs96.png");
@@ -60,8 +64,18 @@ if (DEV_MODE) {
   loadSprite("blue-evil-shroom", "./images/monsterTwo.png");
   loadSprite("evil-shroom", "./images/monsterOne.png");
   loadSprite("another-evil-shroom", "./images/monsterThree.png");
-  loadSprite("mario", "./images/yashi.png");
+  loadSprite("yashi", "./images/yashi.png");
+  loadSprite("shivi", "./images/shivi.png");
+  loadSprite("chinu", "./images/chinu.png");
+  loadSprite("babu", "./images/babu.png");
+  loadSprite("priyank", "./images/priyank.png");
   loadSprite("mushroom", "./images/icecream.png");
   loadSprite("pipe", "./images/pipe.png");
   loadSprite("boss", "./images/boss.png");
 }
+
+// SCENE
+// 1) pickChampion
+// 2) startGame
+// 3) marioGame
+// 4) playerLost

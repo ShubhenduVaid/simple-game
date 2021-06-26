@@ -1,4 +1,4 @@
-scene("lose", ({ score }) => {
+scene("playerLost", ({ score, champion }) => {
   add([
     text("Your score : " + score, 32),
     origin("center"),
@@ -10,9 +10,10 @@ scene("lose", ({ score }) => {
     pos(width() / 2, height() / 2 + 40),
   ]);
   keyPress("space", () => {
-    go("game", {
+    go("marioGame", {
       level: 0,
       score: 0,
+      champion,
     });
   });
 });

@@ -1,3 +1,6 @@
+const { JUMP_FORCE } = require("../../config");
+let { isJumping, CURRENT_JUMP_FORCE } = require("../../config");
+
 const destroyAllAssets = () => {
   destroyAll("dangerousLeft");
   destroyAll("dangerousRight");
@@ -20,4 +23,5 @@ const destroyAllAssets = () => {
   CURRENT_JUMP_FORCE = JUMP_FORCE;
   isJumping = true;
 };
-window.destroyAllAssets = destroyAllAssets;
+
+module.exports = destroyAllAssets;

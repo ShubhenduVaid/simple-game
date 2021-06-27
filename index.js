@@ -1,3 +1,12 @@
+const kaboom = require("kaboom");
+const { DEV_MODE } = require("./config");
+const {
+  pickChampion,
+  startGame,
+  marioGame,
+  playerLost,
+} = require("./src/scenes");
+
 kaboom({
   global: true,
   fullscreen: true,
@@ -7,23 +16,6 @@ kaboom({
   clearColor: [0, 0.4, 0.6, 0.6],
   canvas: document.getElementById("game"),
 });
-
-const BIG_JUMP_FORCE = 700;
-const FALL_DEATH = 400;
-const ENEMY_SPEED = 30;
-const ENEMY_JUMP_FORCE = 200;
-const BOSS_JUMP_FORCE = 600;
-const BOSS_JUMP_TIME = 1;
-const KAMINA_BOSS_JUMP_FORCE = 400;
-const KAMINA_BOSS_JUMP_TIME = 3;
-const GAME_MODE = 1; // 0 EASY 1 HARD
-const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
-const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
-const DEV_MODE = false;
-
-let isJumping = true;
-let CURRENT_JUMP_FORCE = JUMP_FORCE;
-let SOUND_STARTED = false;
 
 if (DEV_MODE) {
   loadSprite("coin", "https://i.imgur.com/wbKxhcd.png");
@@ -80,6 +72,10 @@ if (DEV_MODE) {
 
 // SCENE
 // 1) pickChampion
+pickChampion();
 // 2) startGame
+startGame();
 // 3) marioGame
+marioGame();
 // 4) playerLost
+playerLost();

@@ -243,9 +243,11 @@ const marioGame = () => {
     loop(BOSS_JUMP_TIME, () => {
       action("boss", (b) => {
         if (b.grounded()) {
-          camShake(5);
           b.jump(BOSS_JUMP_FORCE);
           bossPos = b.pos.clone();
+          if (Math.abs(bossPos.x - player.pos.clone().x) < 300) {
+            camShake(5);
+          }
         }
       });
     });

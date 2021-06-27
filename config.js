@@ -6,6 +6,8 @@ const BOSS_JUMP_FORCE = 600;
 const BOSS_JUMP_TIME = 1;
 const KAMINA_BOSS_JUMP_FORCE = 400;
 const KAMINA_BOSS_JUMP_TIME = 3;
+const BULLET_SPEED = 400;
+const BULLET_INTERVAL = 1;
 const GAME_MODE = 1; // 0 EASY 1 HARD
 const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
 const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
@@ -29,4 +31,6 @@ module.exports = {
   isJumping,
   CURRENT_JUMP_FORCE,
   SOUND_STARTED,
+  BULLET_SPEED,
+  BULLET_INTERVAL,
 };

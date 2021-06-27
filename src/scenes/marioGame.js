@@ -10,6 +10,8 @@ const {
   KAMINA_BOSS_JUMP_TIME,
   MOVE_SPEED,
   JUMP_FORCE,
+  BULLET_SPEED,
+  BULLET_INTERVAL,
 } = require("../../config");
 const destroyAllAssets = require("../destructer");
 let { isJumping, CURRENT_JUMP_FORCE, SOUND_STARTED } = require("../../config");
@@ -210,11 +212,40 @@ const marioGame = () => {
       d.move(ENEMY_SPEED + 20, 0);
     });
 
+    let bossPos = undefined;
+
+    const spawnBullet = ({ x, y }) => {
+      add([
+        rect(6, 6),
+        pos(x, rand(y, y - 400)),
+        origin("topleft"),
+        color(0, 0, 0),
+        "bullet",
+        solid(),
+      ]);
+    };
+
+    action("bullet", (b) => {
+      b.move(-BULLET_SPEED, 100);
+      // remove the bullet if it's out of the scene for performance
+      if (b.pos.x < 0 || b.pos.y < 0) {
+        destroy(b);
+      }
+    });
+
+    loop(BULLET_INTERVAL, () => {
+      if (bossPos) {
+        spawnBullet(bossPos);
+        spawnBullet(bossPos);
+      }
+    });
+
     loop(BOSS_JUMP_TIME, () => {
-      action("boss", (d) => {
-        if (d.grounded()) {
+      action("boss", (b) => {
+        if (b.grounded()) {
           camShake(5);
-          d.jump(BOSS_JUMP_FORCE);
+          b.jump(BOSS_JUMP_FORCE);
+          bossPos = b.pos.clone();
         }
       });
     });
@@ -223,7 +254,6 @@ const marioGame = () => {
       action("kamina", (k) => {
         if (k.grounded()) {
           k.jump(KAMINA_BOSS_JUMP_FORCE);
-          camShake(0.11);
         }
       });
     });
@@ -330,7 +360,6 @@ const marioGame = () => {
 
     keyDown("right", () => {
       playSound();
-      console.log(MOVE_SPEED, BIG_JUMP_FORCE, isJumping, CURRENT_JUMP_FORCE);
       player.move(MOVE_SPEED, 0);
     });
 

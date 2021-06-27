@@ -234,7 +234,7 @@ const marioGame = () => {
     });
 
     loop(BULLET_INTERVAL, () => {
-      if (bossPos) {
+      if (bossPos && level % 2 !== 0) {
         spawnBullet(bossPos);
         spawnBullet(bossPos);
       }

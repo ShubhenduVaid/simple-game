@@ -9,7 +9,7 @@ const KAMINA_BOSS_JUMP_TIME = 3;
 const GAME_MODE = 1; // 0 EASY 1 HARD
 const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
 const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
-const DEV_MODE = true;
+const DEV_MODE = false;
 
 let isJumping = true;
 let CURRENT_JUMP_FORCE = JUMP_FORCE;

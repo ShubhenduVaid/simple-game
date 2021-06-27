@@ -245,7 +245,7 @@ const marioGame = () => {
         if (b.grounded()) {
           b.jump(BOSS_JUMP_FORCE);
           bossPos = b.pos.clone();
-          if (Math.abs(bossPos.x - player.pos.clone().x) < 300) {
+          if (Math.abs(bossPos.x - player.pos.clone().x) < 500) {
             camShake(5);
           }
         }

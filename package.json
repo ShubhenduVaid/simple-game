@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "kaboom": "^0.6.0"
+    "kaboom": "^0.5.1"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^9.0.1",

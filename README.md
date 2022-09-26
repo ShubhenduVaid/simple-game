@@ -1,6 +1,8 @@
 # simple-kids-game
 
-## To run `yarn start` and run index.html from 'dist'
+##  `npm install`
+
+## To run `npm run start` and run index.html from 'dist'
 
 ## To play locally config.js => DEV_MODE = true
 

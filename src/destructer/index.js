@@ -1,5 +1,4 @@
-const { JUMP_FORCE } = require("../../config");
-let { isJumping, CURRENT_JUMP_FORCE } = require("../../config");
+import { isJumping, CURRENT_JUMP_FORCE, JUMP_FORCE } from "../../config";
 
 const destroyAllAssets = () => {
   destroyAll("dangerousLeft");
@@ -24,4 +23,4 @@ const destroyAllAssets = () => {
   isJumping = true;
 };
 
-module.exports = destroyAllAssets;
+export { destroyAllAssets };

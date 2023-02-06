@@ -20,4 +20,4 @@ const playerLost = () => {
   });
 };
 
-module.exports = playerLost;
+export { playerLost };

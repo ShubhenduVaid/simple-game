@@ -13,8 +13,8 @@ const levels = [
     "                                                                                                                               ££",
     "                                                                                                                               ££",
     "                                                                                                                               ££",
-    "                                       *                                                                                       ££",
-    "     @@@@@@*                                                                                    %   =*=%=                      ££",
+    "     @@@@@@*                           *                                                        %   =*=%                       ££",
+    "                                                                                                                               ££",
     "                                                                                                                  k            ££",
     "                                                                                       £                   xxxxxxxxxxxxxx      ££",
     "                  z                           (      £        z        £  £           £££            ^   ( xxxxxxxxxxxxxx    ~ ££",
@@ -57,4 +57,4 @@ const levels = [
   ],
 ];
 
-module.exports = levels;
+export { levels };

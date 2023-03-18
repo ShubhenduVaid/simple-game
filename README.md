@@ -6,4 +6,4 @@
 
 ## To play locally config.js => DEV_MODE = true
 
-[![GitHub Pages](https://github.com/shubhenduvaid/simple-game/actions/workflows/gh-pages.yml/badge.svg)](https://shubhenduvaid.github.io/simple-game)
+[![GitHub Pages](https://github.com/shubhenduvaid/simple-game/actions/workflows/static.yml/badge.svg)](https://shubhenduvaid.github.io/simple-game)

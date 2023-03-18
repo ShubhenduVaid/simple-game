@@ -6,7 +6,7 @@ const pickChampion = () => {
       posOffset: { x: 15, y: 50 },
       row: 0,
       rectOffset: { rectX: 10, rectY: 0, rectW: 0, rectH: 38 },
-      description: ["Leader of", "Marketplace and", "Enterprise Sales"],
+      description: ["Leader of", "Marketplace and", "Originations"],
     },
     {
       name: "shubhendu",
@@ -14,7 +14,7 @@ const pickChampion = () => {
       posOffset: { x: -28, y: 35 },
       row: 1,
       rectOffset: { rectX: -6, rectY: 0, rectW: 0, rectH: 38 },
-      description: ["He", "creates", "experiences"],
+      description: ["Leads", "Sales", "Journeys"],
     },
     {
       name: "badar",
@@ -38,11 +38,11 @@ const pickChampion = () => {
       posOffset: { x: -50, y: 45 },
       row: 0,
       rectOffset: { rectX: -56, rectY: 0, rectW: 0, rectH: 38 },
-      description: ["He", "Creates", "Partnerships"],
+      description: ["Creates", "Connections with", "Vendors "],
     },
   ];
 
-  let selectedChampion = "yashi";
+  let selectedChampion = "marco";
 
   scene("pickChampion", () => {
     add([

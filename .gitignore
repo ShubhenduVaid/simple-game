@@ -1,5 +1,4 @@
 # compiled output
-/dist
 
 # dependencies
 /node_modules
@@ -10,3 +9,5 @@
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+.DS_Store

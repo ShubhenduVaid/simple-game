@@ -1,6 +1,6 @@
-const pickChampion = require("./pickChampion");
-const startGame = require("./startGame");
-const marioGame = require("./marioGame");
-const playerLost = require("./playerLost");
+import { pickChampion } from "./pickChampion";
+import { startGame } from "./startGame";
+import { marioGame } from "./marioGame";
+import { playerLost } from "./playerLost";
 
-module.exports = { pickChampion, startGame, marioGame, playerLost };
+export { pickChampion, startGame, marioGame, playerLost };

@@ -8,16 +8,16 @@ const KAMINA_BOSS_JUMP_FORCE = 400;
 const KAMINA_BOSS_JUMP_TIME = 3;
 const BULLET_SPEED = 400;
 const BULLET_INTERVAL = 1;
-const GAME_MODE = 1; // 0 EASY 1 HARD
+const GAME_MODE = 0; // 0 EASY 1 HARD
 const MOVE_SPEED = GAME_MODE === 0 ? 300 : 170;
 const JUMP_FORCE = GAME_MODE === 0 ? 600 : 415;
-const DEV_MODE = false;
+const DEV_MODE = true;
 
+let SOUND_STARTED = false;
 let isJumping = true;
 let CURRENT_JUMP_FORCE = JUMP_FORCE;
-let SOUND_STARTED = false;
 
-module.exports = {
+export {
   BIG_JUMP_FORCE,
   FALL_DEATH,
   ENEMY_SPEED,
@@ -30,6 +30,7 @@ module.exports = {
   DEV_MODE,
   isJumping,
   CURRENT_JUMP_FORCE,
+  JUMP_FORCE,
   SOUND_STARTED,
   BULLET_SPEED,
   BULLET_INTERVAL,

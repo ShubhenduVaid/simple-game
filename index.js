@@ -1,20 +1,19 @@
-const kaboom = require("kaboom");
-const { DEV_MODE } = require("./config");
-const {
-  pickChampion,
-  startGame,
-  marioGame,
-  playerLost,
-} = require("./src/scenes");
+import kaboom from "kaboom";
+
+import { DEV_MODE } from "./config";
+import { pickChampion, startGame, marioGame, playerLost } from "./src/scenes";
 
 kaboom({
   global: true,
   fullscreen: true,
   scale: 2,
-  crisp: false,
   debug: false,
-  clearColor: [0, 0.4, 0.6, 0.6],
+  crisp: true,
+  background: [255, 255, 255, 0.7],
+  font: "sinko",
   canvas: document.getElementById("game"),
+  width: window.width,
+  height: window.height,
 });
 
 if (DEV_MODE) {
@@ -23,11 +22,11 @@ if (DEV_MODE) {
   loadSprite("another-evil-shroom", "https://i.imgur.com/cX2qpJN.png");
   loadSprite("brick", "https://i.imgur.com/pogC9x5.png");
   loadSprite("block", "https://i.imgur.com/M6rwarW.png");
-  loadSprite("yashi", "https://i.imgur.com/Cq01tRX.png");
-  loadSprite("shivi", "https://i.imgur.com/IAyWUx6.png");
-  loadSprite("priyank", "https://i.imgur.com/Wnva3pR.png");
-  loadSprite("chinu", "https://i.imgur.com/sdCOrSL.png");
-  loadSprite("babu", "https://i.imgur.com/Uxchk4M.png");
+  loadSprite("marco", "https://i.ibb.co/ncWfh9j/marco.png");
+  loadSprite("shubhendu", "https://i.ibb.co/wzVrG0b/shubhendu.png");
+  loadSprite("badar", "https://i.ibb.co/Ks7gDzX/badar.png");
+  loadSprite("vinatha", "https://i.ibb.co/W2GTc26/vinatha.png");
+  loadSprite("anson", "https://i.ibb.co/H4VLY3V/anson.png");
   loadSprite("kamina", "https://i.imgur.com/HgLm8A3.png");
   loadSprite("mushroom", "https://i.imgur.com/WVyDZ9V.png");
   loadSprite("surprise", "https://i.imgur.com/gesQ1KP.png");

@@ -1,5 +1,5 @@
-const levels = require("../levels");
-const {
+import { levels } from "../levels";
+import {
   BIG_JUMP_FORCE,
   FALL_DEATH,
   ENEMY_SPEED,
@@ -12,14 +12,16 @@ const {
   JUMP_FORCE,
   BULLET_SPEED,
   BULLET_INTERVAL,
-} = require("../../config");
-const destroyAllAssets = require("../destructer");
-let { isJumping, CURRENT_JUMP_FORCE, SOUND_STARTED } = require("../../config");
+  isJumping,
+  CURRENT_JUMP_FORCE,
+  SOUND_STARTED,
+} from "../../config";
+import { destroyAllAssets } from "../destructer";
 
 const marioGame = () => {
+  let _isJumping = isJumping;
   scene("marioGame", ({ level, score, champion }) => {
     layers(["clouds", "obj", "ui"], "obj");
-    camIgnore(["ui"]);
     camScale(1.1);
 
     const maps = levels;
@@ -27,72 +29,101 @@ const marioGame = () => {
     const levelCfg = {
       width: 20,
       height: 20,
-      "=": [sprite("block"), solid(), "brick"],
-      $: [sprite("coin"), "coin"],
-      "%": [sprite("surprise"), solid(), "coin-surprise"],
-      "*": [sprite("surprise"), solid(), "mushroom-surprise"],
-      "}": [sprite("unboxed"), solid(), "unboxed"],
-      "~": [
+      pos: vec2(0, 0),
+      "=": () => [sprite("block"), area(), solid(), "brick"],
+      $: () => [sprite("coin"), area(), solid(), "coin"],
+      "%": () => [sprite("surprise"), area(), solid(), "coin-surprise"],
+      "*": () => [sprite("surprise"), area(), solid(), "mushroom-surprise"],
+      "}": () => [sprite("unboxed"), area(), solid(), "unboxed"],
+      "~": () => [
         sprite("pipe"),
+        area(),
         solid(),
         scale(0.15),
         origin("bot"),
         body(),
         "pipe",
       ],
-      "^": [
+      "^": () => [
         sprite("evil-shroom"),
+        area(),
         solid(),
         "dangerousLeft",
         scale(0.11),
         origin("bot"),
         body(),
       ],
-      k: [
+      k: () => [
         sprite("kamina"),
+        area(),
         solid(),
         "kamina",
         scale(0.25),
         origin("bot"),
         body(),
       ],
-      "(": [
+      "(": () => [
         sprite("another-evil-shroom"),
+        area(),
         solid(),
         "dangerousLeft",
         scale(0.11),
         origin("bot"),
         body(),
       ],
-      "#": [
+      "#": () => [
         sprite("mushroom"),
+        area(),
         solid(),
         "mushroom",
         body(),
         scale(0.09),
         origin("bot"),
       ],
-      "!": [sprite("blue-block"), solid(), scale(0.5), "blueBlock"],
-      "£": [sprite("blue-brick"), solid(), scale(0.5), "bouncer"],
-      z: [
+      "!": () => [
+        sprite("blue-block"),
+        area(),
+        solid(),
+        scale(0.5),
+        "blueBlock",
+      ],
+      "£": () => [sprite("blue-brick"), area(), solid(), scale(0.5), "bouncer"],
+      z: () => [
         sprite("blue-evil-shroom"),
+        area(),
         solid(),
         scale(0.12),
         "dangerousRight",
         origin("bot"),
         body(),
       ],
-      "@": [sprite("blue-surprise"), solid(), scale(0.5), "coin-surprise"],
-      x: [sprite("blue-steel"), solid(), scale(0.5)],
-      b: [sprite("boss"), solid(), "boss", body(), scale(0.3), origin("bot")],
+      "@": () => [
+        sprite("blue-surprise"),
+        area(),
+        solid(),
+        scale(0.5),
+        "coin-surprise",
+      ],
+      x: () => [sprite("blue-steel"), area(), solid(), scale(0.5)],
+      b: () => [
+        sprite("boss"),
+        area(),
+        solid(),
+        "boss",
+        body(),
+        scale(0.3),
+        origin("bot"),
+      ],
     };
 
     const gameLevel = addLevel(maps[level], levelCfg);
 
+    console.log(level, score, champion);
+
     add([layer("ui"), rect(90, 38), pos(0, 0)]);
     for (let index = 0; index < 15; index++) {
       const rndIntX = Math.floor(Math.random() * 2200) + 50;
-      const rndIntY = Math.floor(Math.random() * 400) + 1;
+      const rndIntY = Math.floor(Math.random() * 420) + 1;
       add([
         layer("clouds"),
         sprite("cloudsOne"),
@@ -117,20 +148,22 @@ const marioGame = () => {
     }
 
     const scoreLabel = add([
-      text("Score : " + score),
+      text("Score : " + score, { size: 40 }),
       pos(10, 20),
-      color(0, 0, 0, 1),
+      color(0, 255, 255),
       layer("ui"),
       {
         value: score,
       },
+      fixed(),
     ]);
 
     add([
-      text("Level : " + parseInt(level + 1)),
+      text("Level : " + parseInt(level + 1), { size: 40 }),
       layer("ui"),
-      pos(10, 10),
-      color(0, 0, 0, 1),
+      pos(10, 60),
+      color(0, 255, 255),
+      fixed(),
     ]);
 
     function big() {
@@ -150,15 +183,15 @@ const marioGame = () => {
           return isBig;
         },
         smallify() {
-          camShake(5);
-          this.scale = vec2(0.07);
+          shake(5);
+          this.scale = vec2(0.1);
           CURRENT_JUMP_FORCE = JUMP_FORCE;
           timer = 0;
           isBig = false;
         },
         biggify(time) {
-          camShake(5);
-          this.scale = vec2(0.09);
+          shake(5);
+          this.scale = vec2(0.12);
           timer = time;
           isBig = true;
         },
@@ -167,7 +200,8 @@ const marioGame = () => {
 
     const player = add([
       sprite(champion),
-      scale(0.07),
+      scale(0.1),
+      area(),
       solid(),
       pos(40, 100),
       body(),
@@ -175,12 +209,12 @@ const marioGame = () => {
       origin("bot"),
     ]);
 
-    action("mushroom", (m) => {
-      m.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
+    onUpdate("mushroom", (m) => {
+      m.color = rand(rgb(0, 0, 0), rgb(255, 255, 255));
       m.move(20, 0);
     });
 
-    player.on("headbump", (obj) => {
+    player.onHeadbutt((obj) => {
       if (obj.is("coin-surprise")) {
         gameLevel.spawn("$", obj.gridPos.sub(0, 1));
         destroy(obj);
@@ -193,22 +227,22 @@ const marioGame = () => {
       }
     });
 
-    player.collides("mushroom", (m) => {
+    player.onCollide("mushroom", (m) => {
       destroy(m);
       player.biggify(6);
     });
 
-    player.collides("coin", (c) => {
+    player.onCollide("coin", (c) => {
       destroy(c);
       scoreLabel.value++;
       scoreLabel.text = "Score : " + scoreLabel.value;
     });
 
-    action("dangerousLeft", (d) => {
+    onUpdate("dangerousLeft", (d) => {
       d.move(-ENEMY_SPEED, 0);
     });
 
-    action("dangerousRight", (d) => {
+    onUpdate("dangerousRight", (d) => {
       d.move(ENEMY_SPEED + 20, 0);
     });
 
@@ -221,11 +255,12 @@ const marioGame = () => {
         origin("topleft"),
         color(0, 0, 0),
         "bullet",
+        area(),
         solid(),
       ]);
     };
 
-    action("bullet", (b) => {
+    onUpdate("bullet", (b) => {
       b.move(-BULLET_SPEED, 100);
       // remove the bullet if it's out of the scene for performance
       if (b.pos.x < 0 || b.pos.y < 0) {
@@ -241,29 +276,29 @@ const marioGame = () => {
     });
 
     loop(BOSS_JUMP_TIME, () => {
-      action("boss", (b) => {
-        if (b.grounded()) {
+      onUpdate("boss", (b) => {
+        if (b.isGrounded()) {
           b.jump(BOSS_JUMP_FORCE);
           bossPos = b.pos.clone();
           if (Math.abs(bossPos.x - player.pos.clone().x) < 500) {
-            camShake(5);
+            shake(5);
           }
         }
       });
     });
 
     loop(KAMINA_BOSS_JUMP_TIME, () => {
-      action("kamina", (k) => {
-        if (k.grounded()) {
+      onUpdate("kamina", (k) => {
+        if (k.isGrounded()) {
           k.jump(KAMINA_BOSS_JUMP_FORCE);
         }
       });
     });
 
-    player.collides("kamina", (k) => {
-      if (isJumping) {
-        camShake(5);
-        k.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
+    player.onCollide("kamina", (k) => {
+      if (_isJumping) {
+        shake(5);
+        k.color = rand(rgb(0, 0, 0), rgb(255, 127, 255));
         k.scale = 0.09;
         wait(0.5, () => {
           destroy(k);
@@ -271,8 +306,8 @@ const marioGame = () => {
           scoreLabel.text = "Score : " + scoreLabel.value;
         });
       } else {
-        camShake(30);
-        player.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
+        shake(30);
+        player.color = rand(rgb(0, 0, 0), rgb(100, 200, 230));
         wait(0.1, () => {
           go("playerLost", { score: scoreLabel.value, champion });
           destroyAllAssets();
@@ -280,8 +315,8 @@ const marioGame = () => {
       }
     });
 
-    player.collides("boss", (d) => {
-      camShake(30);
+    player.onCollide("boss", (d) => {
+      shake(30);
       player.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
       wait(0.5, () => {
         go("playerLost", { score: scoreLabel.value, champion });
@@ -289,25 +324,25 @@ const marioGame = () => {
       });
     });
 
-    collides("dangerousLeft", "bouncer", (d, b) => {
+    onCollide("dangerousLeft", "bouncer", (d, b) => {
       d.jump(ENEMY_JUMP_FORCE);
       d.move(2 * ENEMY_SPEED, 0);
     });
 
-    collides("dangerousRight", "bouncer", (d, b) => {
+    onCollide("dangerousRight", "bouncer", (d, b) => {
       d.jump(ENEMY_JUMP_FORCE);
       d.move(2 * -ENEMY_SPEED, 0);
     });
 
-    player.collides("dangerousRight", (d) => {
-      if (isJumping) {
-        camShake(5);
+    player.onCollide("dangerousRight", (d) => {
+      if (_isJumping) {
+        shake(5);
         d.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
         wait(0.1, () => {
           destroy(d);
         });
       } else {
-        camShake(30);
+        shake(30);
         player.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
         wait(0.1, () => {
           go("playerLost", { score: scoreLabel.value, champion });
@@ -316,15 +351,15 @@ const marioGame = () => {
       }
     });
 
-    player.collides("dangerousLeft", (d) => {
-      if (isJumping) {
-        camShake(5);
+    player.onCollide("dangerousLeft", (d) => {
+      if (_isJumping) {
+        shake(5);
         d.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
         wait(0.1, () => {
           destroy(d);
         });
       } else {
-        camShake(30);
+        shake(30);
         player.color = rand(rgb(0, 0, 0), rgb(1, 1, 1));
         wait(0.5, () => {
           go("playerLost", { score: scoreLabel.value, champion });
@@ -333,10 +368,13 @@ const marioGame = () => {
       }
     });
 
-    player.action(() => {
+    player.onUpdate(() => {
+      // center camera to player
+
       camPos(player.pos);
+
       if (player.pos.y >= FALL_DEATH) {
-        camShake(30);
+        shake(30);
         wait(0.5, () => {
           go("playerLost", { score: scoreLabel.value, champion });
           destroyAllAssets();
@@ -344,37 +382,34 @@ const marioGame = () => {
       }
     });
 
-    player.collides("pipe", () => {
-      keyPress("down", () => {
-        player.move(0, 100);
-        go("marioGame", {
-          level: (level + 1) % maps.length,
-          score: scoreLabel.value,
-          champion,
-        });
+    player.onCollide("pipe", () => {
+      go("marioGame", {
+        level: (level + 1) % maps.length,
+        score: scoreLabel.value,
+        champion,
       });
     });
 
-    keyDown("left", () => {
+    onKeyDown("left", () => {
       playSound();
       player.move(-MOVE_SPEED, 0);
     });
 
-    keyDown("right", () => {
+    onKeyDown("right", () => {
       playSound();
       player.move(MOVE_SPEED, 0);
     });
 
-    player.action(() => {
-      if (player.grounded()) {
-        isJumping = false;
+    player.onUpdate(() => {
+      if (player.isGrounded()) {
+        _isJumping = false;
       }
     });
 
-    keyPress("space", () => {
+    onKeyPress("space", () => {
       playSound();
-      if (player.grounded()) {
-        isJumping = true;
+      if (player.isGrounded()) {
+        _isJumping = true;
         player.jump(CURRENT_JUMP_FORCE);
       }
     });
@@ -382,7 +417,7 @@ const marioGame = () => {
     function playSound() {
       if (!SOUND_STARTED) {
         SOUND_STARTED = true;
-        var sound = document.getElementById("initAudio");
+        const sound = document.getElementById("initAudio");
         sound.play();
         sound.loop = true;
       }
@@ -390,4 +425,4 @@ const marioGame = () => {
   });
 };
 
-module.exports = marioGame;
+export { marioGame };

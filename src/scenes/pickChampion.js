@@ -1,48 +1,44 @@
 const pickChampion = () => {
   const champions = [
     {
-      name: "yashi",
-      scaleFactor: 0.32,
-      posOffset: { x: 48, y: 25 },
+      name: "marco",
+      scaleFactor: 0.28,
+      posOffset: { x: 15, y: 50 },
       row: 0,
-      rectOffset: { rectX: 22, rectY: 0, rectW: 10, rectH: 38 },
-      description: ["She is just a", "kid but the", "most agile one."],
+      rectOffset: { rectX: 10, rectY: 0, rectW: 0, rectH: 38 },
+      description: ["Leader of", "Marketplace and", "Enterprise Sales"],
     },
     {
-      name: "shivi",
-      scaleFactor: 0.38,
-      posOffset: { x: 0, y: 18 },
+      name: "shubhendu",
+      scaleFactor: 0.33,
+      posOffset: { x: -28, y: 35 },
       row: 1,
-      rectOffset: { rectX: -8, rectY: 0, rectW: 40, rectH: 38 },
-      description: [
-        "She is the mother",
-        "of Yashi and got",
-        "skills with knife.",
-      ],
+      rectOffset: { rectX: -6, rectY: 0, rectW: 0, rectH: 38 },
+      description: ["He", "creates", "experiences"],
     },
     {
-      name: "chinu",
-      scaleFactor: 0.36,
-      posOffset: { x: 15, y: 20 },
+      name: "badar",
+      scaleFactor: 0.28,
+      posOffset: { x: -18, y: 60 },
       row: 0,
-      rectOffset: { rectX: 2, rectY: 0, rectW: 18, rectH: 38 },
-      description: ["An animal lover", "and a", "trouble maker."],
+      rectOffset: { rectX: -20, rectY: 0, rectW: 0, rectH: 38 },
+      description: ["The", "Orchestration", "Man"],
     },
     {
-      name: "babu",
-      scaleFactor: 0.4,
-      posOffset: { x: 18, y: 16 },
+      name: "vinatha",
+      scaleFactor: 0.27,
+      posOffset: { x: -28, y: 60 },
       row: 1,
-      rectOffset: { rectX: 0, rectY: 0, rectW: 5, rectH: 38 },
-      description: ["The smoker and", "most", "notorious one."],
+      rectOffset: { rectX: -36, rectY: 0, rectW: 0, rectH: 38 },
+      description: ["She connects", "all teams"],
     },
     {
-      name: "priyank",
-      scaleFactor: 0.32,
-      posOffset: { x: 0, y: 30 },
+      name: "anson",
+      scaleFactor: 0.28,
+      posOffset: { x: -50, y: 45 },
       row: 0,
-      rectOffset: { rectX: -15, rectY: 0, rectW: 10, rectH: 38 },
-      description: ["Rumer has it", "his name is", "Mr VP."],
+      rectOffset: { rectX: -56, rectY: 0, rectW: 0, rectH: 38 },
+      description: ["He", "Creates", "Partnerships"],
     },
   ];
 
@@ -50,10 +46,10 @@ const pickChampion = () => {
 
   scene("pickChampion", () => {
     add([
-      text("Select Your Champion !!!", 36),
-      pos(10, 20),
+      text("Select Your Champion !!!", { size: 40 }),
+      pos(40, 20),
       origin("topleft"),
-      color(1, 1, 1),
+      color(255, 255, 255),
     ]);
 
     champions.forEach(
@@ -68,12 +64,13 @@ const pickChampion = () => {
         },
         index
       ) => {
-        const posX = index * 200 + x;
+        const posX = index * 190 + x;
         const posY = row * 100 + 76 + y;
         add([
           rect(150 + rectW, 250 + rectH),
-          pos(index * 200 + rectX, row * 100 + 76 + rectY),
-          color(rand(rgb(0, 0, 0), rgb(1, 1, 1))),
+          area(),
+          pos(index * 190 + rectX, row * 100 + 76 + rectY),
+          color(rand(rgb(0, 0, 0), rgb(255, 255, 255))),
           origin("topleft"),
           "bg" + index,
         ]);
@@ -84,48 +81,36 @@ const pickChampion = () => {
           origin("topleft"),
         ]);
         add([
-          text(name.toUpperCase(), 12),
-          pos(index * 200 + rectX + 10, row * 100 + 76 + rectY + 10),
+          text(name.toUpperCase(), { size: 12 }),
+          pos(vec2(index * 190 + rectX + 10, row * 100 + 76 + rectY + 10)),
           origin("topleft"),
-          color(1, 1, 1),
+          color(255, 255, 255),
         ]);
         description.forEach((desc, _index) => {
           add([
-            text(desc, 10),
+            text(desc, { size: 10 }),
             pos(
-              index * 200 + rectX + 9,
-              row * 100 + 200 + rectY + 125 + 10 * _index
+              vec2(
+                index * 190 + rectX + 9,
+                row * 100 + 200 + rectY + 125 + 10 * _index
+              )
             ),
             origin("topleft"),
-            color(1, 1, 1),
+            color(255, 255, 255),
           ]);
         });
       }
     );
 
-    mouseClick(() => {
-      const { x, y } = mousePos();
-      add([
-        rect(1, 1),
-        pos(x, y),
-        color(rgba(0, 0, 0, 0)),
-        origin("topleft"),
-        "mousePointer",
-      ]);
-      for (let index = 0; index < champions.length; index++) {
-        let isHit = false;
-        overlaps("mousePointer", "bg" + index, (p, b) => {
-          destroy(p);
-          isHit = true;
-          selectedChampion = champions[index].name;
-          go("startGame", { champion: selectedChampion });
-        });
-        if (isHit) break;
-      }
-    });
+    for (let index = 0; index < champions.length; index++) {
+      onClick("bg" + index, (bg) => {
+        selectedChampion = champions[index].name;
+        go("startGame", { champion: selectedChampion });
+      });
+    }
   });
 
-  start("pickChampion");
+  go("pickChampion");
 };
 
-module.exports = pickChampion;
+export { pickChampion };

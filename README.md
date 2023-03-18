@@ -1,9 +1,9 @@
 # simple-kids-game
 
-##  `npm install`
+## `npm install`
 
 ## To run `npm run start` and run index.html from 'dist'
 
 ## To play locally config.js => DEV_MODE = true
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a42a5b44-a394-4399-90b0-b0f01952548e/deploy-status)](https://app.netlify.com/sites/relaxed-shirley-f5d694/deploys)
+[![GitHub Pages](https://github.com/shubhenduvaid/simple-game/actions/workflows/gh-pages.yml/badge.svg)](https://shubhenduvaid.github.io/simple-game)

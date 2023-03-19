@@ -25,7 +25,7 @@ if (DEV_MODE) {
   loadSprite("marco", "https://i.ibb.co/ncWfh9j/marco.png");
   loadSprite("shubhendu", "https://i.ibb.co/wzVrG0b/shubhendu.png");
   loadSprite("badar", "https://i.ibb.co/Ks7gDzX/badar.png");
-  loadSprite("vinatha", "https://i.ibb.co/W2GTc26/vinatha.png");
+  loadSprite("mahendra", "https://i.ibb.co/VDMwftq/mahendra.png");
   loadSprite("anson", "https://i.ibb.co/H4VLY3V/anson.png");
   loadSprite("kamina", "https://i.imgur.com/HgLm8A3.png");
   loadSprite("mushroom", "https://i.imgur.com/WVyDZ9V.png");

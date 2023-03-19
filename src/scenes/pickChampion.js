@@ -25,12 +25,12 @@ const pickChampion = () => {
       description: ["The", "Orchestration", "Man"],
     },
     {
-      name: "vinatha",
+      name: "mahendra",
       scaleFactor: 0.27,
       posOffset: { x: -28, y: 60 },
       row: 1,
       rectOffset: { rectX: -36, rectY: 0, rectW: 0, rectH: 38 },
-      description: ["She connects", "all teams"],
+      description: ["He will", "give you", "a bill."],
     },
     {
       name: "anson",
